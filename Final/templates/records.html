@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere - Delhi Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="title-section">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h1>WeatherSphere Delhi</h1>
+                    <span class="subtitle">Real-time Weather Analytics</span>
+                </div>
+                <div class="weather-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Delhi, India</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon temp">
+                    <i class="fas fa-thermometer-half"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="avg-temp">--°C</span>
+                    <span class="stat-label">Avg Temperature</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon humidity">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="avg-humidity">--%</span>
+                    <span class="stat-label">Avg Humidity</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon pressure">
+                    <i class="fas fa-compress-alt"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="avg-pressure">-- mB</span>
+                    <span class="stat-label">Avg Pressure</span>
+                </div>
+            </div>
+        </div>
+
+        <main class="records-section">
+            <div class="section-header">
+                <h2><i class="fas fa-database"></i> Weather Records</h2>
+                <div class="info-bubble" id="record-count-info">
+                    <i class="fas fa-sync fa-spin"></i> Loading records...
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="records-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="condition">
+                                <span>Weather Condition</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable" data-sort="temperature">
+                                <span>Temperature (°C)</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable" data-sort="humidity">
+                                <span>Humidity (%)</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable" data-sort="pressure">
+                                <span>Pressure (mB)</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-body">
+                        <tr>
+                            <td colspan="4" class="loading-state">
+                                <div class="loading-spinner"></div>
+                                <span>Loading weather data...</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-section">
+                <div id="pagination-controls" class="pagination-controls">
+                </div>
+            </div>
+        </main>
+
+        <footer class="dashboard-footer">
+            <p>WeatherSphere &copy; 2024 | Delhi Weather Monitoring System</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
